@@ -1,101 +1,141 @@
 import Hero from "@/components/Hero";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Calendar, Trello, TreePine, StickyNote } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Timer, Trello, Calendar, StickyNote } from "lucide-react";
+import PomodoroTimer from "@/components/tools/PomodoroTimer";
+import TaskBoard from "@/components/tools/TaskBoard";
+import DailyPlanner from "@/components/tools/DailyPlanner";
+import QuickNotes from "@/components/tools/QuickNotes";
 
 const Tools = () => {
-  const tools = [
-    {
-      icon: Calendar,
-      name: "Google Calendar",
-      description: "Schedule classes, assignments, and personal events in one place",
-      use: "Time blocking and deadline tracking",
-      url: "https://calendar.google.com",
-      color: "text-blue-600"
-    },
-    {
-      icon: Trello,
-      name: "Trello",
-      description: "Visual project management with boards, lists, and cards",
-      use: "Organize tasks and track progress",
-      url: "https://trello.com",
-      color: "text-blue-500"
-    },
-    {
-      icon: TreePine,
-      name: "Forest",
-      description: "Stay focused and grow virtual trees while studying",
-      use: "Focus timer and distraction blocker",
-      url: "https://www.forestapp.cc",
-      color: "text-green-600"
-    },
-    {
-      icon: StickyNote,
-      name: "Notion",
-      description: "All-in-one workspace for notes, tasks, and databases",
-      use: "Note-taking and knowledge management",
-      url: "https://notion.so",
-      color: "text-gray-800"
-    },
-  ];
-
   return (
     <div className="min-h-screen">
       <Hero 
-        title="Productivity Tools & Resources"
-        subtitle="Powerful apps and platforms to help you stay organized and focused"
+        title="Productivity Tools"
+        subtitle="Interactive tools to help you manage your time effectively - all built right into the website!"
         showCta={false}
       />
       
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="mb-12 text-center">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="mb-8 text-center">
             <p className="text-lg text-muted-foreground">
-              These carefully selected tools can transform how you manage your time. 
-              Choose the ones that fit your workflow and start building better habits today.
+              No sign-ups required. All your data is saved locally in your browser.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {tools.map((tool) => (
-              <Card key={tool.name} className="bg-gradient-card shadow-card hover:shadow-card-hover transition-all duration-300 border-border/50">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-primary/10 p-3 rounded-lg">
-                        <tool.icon className={`h-6 w-6 ${tool.color}`} />
-                      </div>
-                      <div>
-                        <CardTitle className="text-xl">{tool.name}</CardTitle>
-                        <CardDescription className="mt-1">{tool.use}</CardDescription>
-                      </div>
-                    </div>
+          <Tabs defaultValue="pomodoro" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8 h-auto">
+              <TabsTrigger value="pomodoro" className="flex flex-col md:flex-row items-center gap-2 py-3">
+                <Timer className="h-5 w-5" />
+                <span>Pomodoro</span>
+              </TabsTrigger>
+              <TabsTrigger value="tasks" className="flex flex-col md:flex-row items-center gap-2 py-3">
+                <Trello className="h-5 w-5" />
+                <span>Tasks</span>
+              </TabsTrigger>
+              <TabsTrigger value="planner" className="flex flex-col md:flex-row items-center gap-2 py-3">
+                <Calendar className="h-5 w-5" />
+                <span>Planner</span>
+              </TabsTrigger>
+              <TabsTrigger value="notes" className="flex flex-col md:flex-row items-center gap-2 py-3">
+                <StickyNote className="h-5 w-5" />
+                <span>Notes</span>
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="pomodoro">
+              <div className="grid lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                  <PomodoroTimer />
+                </div>
+                <div className="bg-secondary/30 p-6 rounded-lg border border-border space-y-4">
+                  <h3 className="font-bold text-xl">How to Use</h3>
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    <p><strong className="text-foreground">1. Click Start</strong> to begin a 25-minute focus session</p>
+                    <p><strong className="text-foreground">2. Work without distractions</strong> until the timer completes</p>
+                    <p><strong className="text-foreground">3. Take a 5-minute break</strong> when prompted</p>
+                    <p><strong className="text-foreground">4. After 4 sessions,</strong> enjoy a longer 15-minute break</p>
                   </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">{tool.description}</p>
-                  <a href={tool.url} target="_blank" rel="noopener noreferrer">
-                    <Button className="w-full group" variant="outline">
-                      Visit Website
-                      <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  <div className="bg-primary/10 p-4 rounded-lg mt-4">
+                    <p className="text-sm font-semibold mb-2">💡 Pro Tip</p>
+                    <p className="text-sm text-muted-foreground">
+                      Use breaks to stretch, hydrate, or rest your eyes - but stay away from social media!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
 
-          <div className="mt-16 p-8 bg-accent/10 rounded-xl border border-accent/20">
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <StickyNote className="h-6 w-6 text-accent" />
-              Pro Tip: Start Small
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Don't try to use all these tools at once! Pick one or two that match your needs and 
-              master them before exploring others. The best productivity system is the one you'll 
-              actually use consistently.
-            </p>
-          </div>
+            <TabsContent value="tasks">
+              <div className="grid lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                  <TaskBoard />
+                </div>
+                <div className="bg-secondary/30 p-6 rounded-lg border border-border space-y-4">
+                  <h3 className="font-bold text-xl">How to Use</h3>
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    <p><strong className="text-foreground">Add tasks</strong> using the input field at the top</p>
+                    <p><strong className="text-foreground">Move tasks</strong> between columns as you progress</p>
+                    <p><strong className="text-foreground">To Do:</strong> Tasks you plan to work on</p>
+                    <p><strong className="text-foreground">In Progress:</strong> What you're currently doing</p>
+                    <p><strong className="text-foreground">Done:</strong> Completed tasks (celebrate! 🎉)</p>
+                  </div>
+                  <div className="bg-primary/10 p-4 rounded-lg mt-4">
+                    <p className="text-sm font-semibold mb-2">💡 Pro Tip</p>
+                    <p className="text-sm text-muted-foreground">
+                      Limit your "In Progress" column to 2-3 tasks to maintain focus
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="planner">
+              <div className="grid lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                  <DailyPlanner />
+                </div>
+                <div className="bg-secondary/30 p-6 rounded-lg border border-border space-y-4">
+                  <h3 className="font-bold text-xl">How to Use</h3>
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    <p><strong className="text-foreground">Select a date</strong> to plan your day</p>
+                    <p><strong className="text-foreground">Add time-specific tasks</strong> to create a schedule</p>
+                    <p><strong className="text-foreground">View your timeline</strong> for the selected day</p>
+                    <p><strong className="text-foreground">Plan ahead</strong> for upcoming days</p>
+                  </div>
+                  <div className="bg-primary/10 p-4 rounded-lg mt-4">
+                    <p className="text-sm font-semibold mb-2">💡 Pro Tip</p>
+                    <p className="text-sm text-muted-foreground">
+                      Plan your week every Sunday evening for a stress-free start
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="notes">
+              <div className="grid lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                  <QuickNotes />
+                </div>
+                <div className="bg-secondary/30 p-6 rounded-lg border border-border space-y-4">
+                  <h3 className="font-bold text-xl">How to Use</h3>
+                  <div className="space-y-3 text-sm text-muted-foreground">
+                    <p><strong className="text-foreground">Create notes</strong> for ideas, reminders, or study materials</p>
+                    <p><strong className="text-foreground">Click any note</strong> to edit it inline</p>
+                    <p><strong className="text-foreground">All notes are saved</strong> automatically in your browser</p>
+                    <p><strong className="text-foreground">Delete notes</strong> you no longer need</p>
+                  </div>
+                  <div className="bg-primary/10 p-4 rounded-lg mt-4">
+                    <p className="text-sm font-semibold mb-2">💡 Pro Tip</p>
+                    <p className="text-sm text-muted-foreground">
+                      Use notes for quick study reminders, assignment details, or brilliant ideas
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
     </div>
