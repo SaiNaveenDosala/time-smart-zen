@@ -10,9 +10,9 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ icon: Icon, title, description, children }: FeatureCardProps) => {
   return (
-    <Card className="bg-gradient-card shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 border-border/50">
+    <Card className="bg-gradient-card shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2 hover:scale-105 border-border/50 group">
       <CardHeader>
-        <div className="mb-4 bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center">
+        <div className="mb-4 bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
           <Icon className="h-6 w-6 text-primary" />
         </div>
         <CardTitle className="text-xl">{title}</CardTitle>
