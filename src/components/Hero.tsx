@@ -8,9 +8,11 @@ interface HeroProps {
   ctaText?: string;
   ctaLink?: string;
   showCta?: boolean;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
 }
 
-const Hero = ({ title, subtitle, ctaText = "Explore Techniques", ctaLink = "/techniques", showCta = true }: HeroProps) => {
+const Hero = ({ title, subtitle, ctaText = "Explore Techniques", ctaLink = "/techniques", showCta = true, secondaryCtaText, secondaryCtaLink }: HeroProps) => {
   return (
     <section className="relative bg-gradient-hero text-primary-foreground py-20 md:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
@@ -23,7 +25,7 @@ const Hero = ({ title, subtitle, ctaText = "Explore Techniques", ctaLink = "/tec
             {subtitle}
           </p>
           {showCta && (
-            <div className="pt-4">
+            <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
               <Link to={ctaLink}>
                 <Button 
                   size="lg" 
@@ -34,6 +36,18 @@ const Hero = ({ title, subtitle, ctaText = "Explore Techniques", ctaLink = "/tec
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
+              {secondaryCtaText && secondaryCtaLink && (
+                <Link to={secondaryCtaLink}>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="group shadow-lg hover:shadow-xl transition-all bg-white/10 border-white/20 hover:bg-white/20"
+                  >
+                    {secondaryCtaText}
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              )}
             </div>
           )}
         </div>
