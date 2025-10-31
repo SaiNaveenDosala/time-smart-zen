@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero";
-import { AlertCircle, BookOpen, Users } from "lucide-react";
+import { AlertCircle, BookOpen, Users, ArrowLeft } from "lucide-react";
 import FeatureCard from "@/components/FeatureCard";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -13,6 +15,12 @@ const About = () => {
       
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
+          <Link to="/">
+            <Button variant="outline" size="lg" className="mb-8 group">
+              <ArrowLeft className="mr-2 h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+              Back to Home
+            </Button>
+          </Link>
           <div className="prose prose-lg max-w-none">
             <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">

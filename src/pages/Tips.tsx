@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero";
 import { Card, CardContent } from "@/components/ui/card";
-import { Lightbulb, CheckCircle2 } from "lucide-react";
+import { Lightbulb, CheckCircle2, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Tips = () => {
   const tips = [
@@ -63,6 +65,12 @@ const Tips = () => {
       
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-4xl">
+          <Link to="/">
+            <Button variant="outline" size="lg" className="mb-8 group">
+              <ArrowLeft className="mr-2 h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+              Back to Home
+            </Button>
+          </Link>
           <div className="space-y-8">
             {tips.map((section, idx) => (
               <Card key={idx} className="bg-gradient-card shadow-card border-border/50">

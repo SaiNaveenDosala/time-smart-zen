@@ -1,7 +1,9 @@
 import Hero from "@/components/Hero";
 import FeatureCard from "@/components/FeatureCard";
-import { Timer, Grid3x3, Target, Calendar } from "lucide-react";
+import { Timer, Grid3x3, Target, Calendar, ArrowLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Techniques = () => {
   return (
@@ -14,6 +16,12 @@ const Techniques = () => {
       
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
+          <Link to="/">
+            <Button variant="outline" size="lg" className="mb-8 group">
+              <ArrowLeft className="mr-2 h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+              Back to Home
+            </Button>
+          </Link>
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <FeatureCard
               icon={Timer}

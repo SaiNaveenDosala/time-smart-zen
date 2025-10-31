@@ -1,6 +1,8 @@
 import Hero from "@/components/Hero";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Timer, Trello, Calendar, StickyNote } from "lucide-react";
+import { Timer, Trello, Calendar, StickyNote, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import PomodoroTimer from "@/components/tools/PomodoroTimer";
 import TaskBoard from "@/components/tools/TaskBoard";
 import DailyPlanner from "@/components/tools/DailyPlanner";
@@ -17,29 +19,37 @@ const Tools = () => {
       
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="mb-8 text-center">
-            <p className="text-lg text-muted-foreground">
-              No sign-ups required. All your data is saved locally in your browser.
-            </p>
+          <div className="mb-8">
+            <Link to="/">
+              <Button variant="outline" size="lg" className="mb-6 group">
+                <ArrowLeft className="mr-2 h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+                Back to Home
+              </Button>
+            </Link>
+            <div className="text-center">
+              <p className="text-lg text-muted-foreground">
+                No sign-ups required. All your data is saved locally in your browser.
+              </p>
+            </div>
           </div>
 
           <Tabs defaultValue="pomodoro" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8 h-auto">
-              <TabsTrigger value="pomodoro" className="flex flex-col md:flex-row items-center gap-2 py-3">
-                <Timer className="h-5 w-5" />
-                <span>Pomodoro</span>
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8 h-auto gap-2 p-2">
+              <TabsTrigger value="pomodoro" className="flex flex-col md:flex-row items-center gap-3 py-4 px-6 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Timer className="h-6 w-6" />
+                <span className="font-semibold">Pomodoro</span>
               </TabsTrigger>
-              <TabsTrigger value="tasks" className="flex flex-col md:flex-row items-center gap-2 py-3">
-                <Trello className="h-5 w-5" />
-                <span>Tasks</span>
+              <TabsTrigger value="tasks" className="flex flex-col md:flex-row items-center gap-3 py-4 px-6 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Trello className="h-6 w-6" />
+                <span className="font-semibold">Tasks</span>
               </TabsTrigger>
-              <TabsTrigger value="planner" className="flex flex-col md:flex-row items-center gap-2 py-3">
-                <Calendar className="h-5 w-5" />
-                <span>Planner</span>
+              <TabsTrigger value="planner" className="flex flex-col md:flex-row items-center gap-3 py-4 px-6 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Calendar className="h-6 w-6" />
+                <span className="font-semibold">Planner</span>
               </TabsTrigger>
-              <TabsTrigger value="notes" className="flex flex-col md:flex-row items-center gap-2 py-3">
-                <StickyNote className="h-5 w-5" />
-                <span>Notes</span>
+              <TabsTrigger value="notes" className="flex flex-col md:flex-row items-center gap-3 py-4 px-6 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <StickyNote className="h-6 w-6" />
+                <span className="font-semibold">Notes</span>
               </TabsTrigger>
             </TabsList>
 
